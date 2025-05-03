@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Here Are Your Responses</h2>
+        <h3>Open Questions</h3>
+        <ul>
+            {% for answer in responses1to5 %}
+                <li>{{ answer }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Yes/No Questions</h3>
+        <ul>
+            {% for answer in responses6to16 %}
+                <li>{{ answer }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>{{ result }}</h2>
+        <a href="{{ url_for('index') }}">Try Again</a>
+    </div>
+</body>
+</html>

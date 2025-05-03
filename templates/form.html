@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Qualification App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome! Let's Get to Know You</h2>
+        <form action="{{ url_for('submit') }}" method="POST">
+            <h3>Open Questions</h3>
+            <input type="text" name="name" placeholder="What is your name?" required>
+            <input type="text" name="location" placeholder="Where are you from?" required>
+            <input type="text" name="trait" placeholder="One word to describe you?" required>
+            <input type="text" name="party" placeholder="Political party (APC, PDP, LP)?" required>
+            <input type="text" name="change" placeholder="What would you change as president for a day?" required>
+
+            <h3>Yes/No Questions</h3>
+            {% for question, name in [
+                ("Do you believe in God?", "god"),
+                ("Do you believe Karma exists?", "karma"),
+                ("Do you believe in reincarnation?", "reincarnation"),
+                ("Would you sell your kidney for $100,000 today?", "kidney"),
+                ("Do you support legalizing morality?", "morality"),
+                ("Do you think life has been fair to you?", "life_fair"),
+                ("Is education the way to wealth?", "education"),
+                ("Have you ever been heartbroken?", "heartbreak"),
+                ("Do you have any great regret?", "regret"),
+                ("Is morality humanity?", "humanity"),
+                ("Are you a morning person?", "morning")
+            ] %}
+                <label>{{ question }}</label>
+                <select name="{{ name }}" required>
+                    <option value="">--Select--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            {% endfor %}
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
